@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OurPot – Ștergerea datelor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,600&display=swap">
+<style>
+  :root {
+    --bg: #F6F8F6;
+    --paper: #FFFFFF;
+    --ink: #17231D;
+    --muted: #55655C;
+    --line: #DCE5DF;
+    --accent: #1B6E4F;
+    --accent-soft: #E3F1EA;
+    --coin: #B7851B;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #101713;
+      --paper: #16201A;
+      --ink: #E7EFEA;
+      --muted: #9DB0A5;
+      --line: #2A3830;
+      --accent: #7FD8AE;
+      --accent-soft: #1D3328;
+      --coin: #F2C45A;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #101713;
+    --paper: #16201A;
+    --ink: #E7EFEA;
+    --muted: #9DB0A5;
+    --line: #2A3830;
+    --accent: #7FD8AE;
+    --accent-soft: #1D3328;
+    --coin: #F2C45A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 0 16px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding-block: 40px 64px; display: grid; gap: 28px; }
+  header { display: grid; gap: 10px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand svg { width: 48px; height: 48px; flex: none; border-radius: 12px; }
+  .brand span { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 22px; color: var(--accent); }
+  h1 { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.15; margin: 0; text-wrap: balance; }
+  h2 { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 21px; margin: 0; text-wrap: balance; }
+  .meta { color: var(--muted); margin: 0; }
+  nav.lang { display: flex; flex-wrap: wrap; gap: 8px; }
+  nav.lang a {
+    text-decoration: none; color: var(--accent); border: 1px solid var(--line); background: var(--paper);
+    padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 14px;
+  }
+  nav.lang a:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .summary {
+    background: var(--accent-soft); border-radius: 14px; padding: 18px 20px; display: grid; gap: 6px;
+  }
+  .summary p { margin: 0; }
+  .summary strong { color: var(--accent); }
+  article { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 24px 22px; display: grid; gap: 26px; }
+  section { display: grid; gap: 8px; }
+  section p, section ul { margin: 0; max-width: 66ch; }
+  ul { padding-left: 20px; display: grid; gap: 4px; }
+  .fill { background: color-mix(in srgb, var(--coin) 22%, transparent); padding: 0 4px; border-radius: 4px; }
+  a { color: var(--accent); }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 8px 0; }
+  .lang-title { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 108 108" aria-hidden="true">
+        <rect width="108" height="108" fill="#1B6E4F"/>
+        <g transform="translate(54 54) scale(1.25) translate(-54 -54)">
+          <path fill="#F6C343" d="M54,24a9,9 0,1 1,0 18a9,9 0,1 1,0 -18z"/>
+          <path fill="#E0A92E" d="M54,28a5,5 0,1 1,0 10a5,5 0,1 1,0 -10z"/>
+          <path fill="#FFFFFF" d="M32,45h44a3,3 0,0 1,3 3v2a3,3 0,0 1,-3 3h-44a3,3 0,0 1,-3 -3v-2a3,3 0,0 1,3 -3z"/>
+          <path fill="#FFFFFF" fill-rule="evenodd" d="M34,55L74,55C74,72 67,82 54,82C41,82 34,72 34,55Z M54,75C54,75 45.5,70 45.5,64.5C45.5,61.8 47.6,59.8 50.1,59.8C51.9,59.8 53.3,60.9 54,62.2C54.7,60.9 56.1,59.8 57.9,59.8C60.4,59.8 62.5,61.8 62.5,64.5C62.5,70 54,75 54,75Z"/>
+        </g>
+      </svg>
+      <span>OurPot</span>
+    </div>
+    <h1>Ștergerea datelor din OurPot</h1>
+    <p class="meta">Aplicația OurPot (Google Play: „OurPot: buget și cheltuieli”) · dezvoltator Ghid Labs · actualizat 6 octombrie 2026 · English below</p>
+    <nav class="lang" aria-label="Limba / Language">
+      <a href="#ro">Română</a>
+      <a href="#en">English</a>
+    </nav>
+  </header>
+
+  <div class="summary">
+    <p><strong>Pe scurt:</strong> aproape toate datele OurPot stau doar pe telefonul tău și le ștergi singur, din aplicație. Pentru datele de pe server (bugetul comun și mesajele trimise nouă) ne scrii la <a href="mailto:coleaghidiu@gmail.com">coleaghidiu@gmail.com</a> și le ștergem în cel mult 30 de zile.</p>
+  </div>
+
+  <article id="ro" lang="ro">
+    <span class="lang-title">Română</span>
+
+    <section>
+      <h2>1. Datele de pe telefon</h2>
+      <p>Tranzacțiile, categoriile, bugetele, notițele, setările și notificările salvate stau doar pe telefonul tău. Le ștergi așa:</p>
+      <ul>
+        <li>în aplicație: <em>Mai mult → Setări → Șterge toate datele</em>, apoi confirmi;</li>
+        <li>sau dezinstalezi aplicația, ceea ce șterge tot ce e pe telefon.</li>
+      </ul>
+      <p>Copiile de siguranță salvate de tine (fișiere) și backup-ul automat Android din contul tău Google le gestionezi tu și le poți șterge oricând.</p>
+    </section>
+
+    <section>
+      <h2>2. Bugetul comun (pe server, criptat)</h2>
+      <ul>
+        <li>În tab-ul <em>Comun</em>, la setările bugetului comun, alegi <em>Părăsește bugetul comun</em>. Profilul tău de membru (nume, procent, carduri comune) se șterge de pe server.</li>
+        <li>Plățile comune trimise de tine rămân, criptate, la ceilalți membri până le scot ei sau până se șterge tot bugetul comun.</li>
+        <li>Ca să ștergem de pe server <strong>tot bugetul comun</strong>, scrie-ne la <a href="mailto:coleaghidiu@gmail.com">coleaghidiu@gmail.com</a> și include codul de invitație.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Mesajele trimise dezvoltatorului</h2>
+      <p>Rapoartele trimise din <em>Raportează o problemă sau propune o idee</em> (text, e-mailul tău dacă l-ai lăsat, date tehnice) le ștergem la cerere. Scrie-ne la <a href="mailto:coleaghidiu@gmail.com">coleaghidiu@gmail.com</a> cu data aproximativă și o parte din text, ca să le găsim.</p>
+    </section>
+
+    <section>
+      <h2>Ce se șterge și ce se păstrează</h2>
+      <ul>
+        <li>Se șterg: datele cerute de mai sus și identificatorul anonim Firebase asociat lor.</li>
+        <li>Nu păstrăm nimic după ștergere, cu excepția situațiilor în care legea ne obligă.</li>
+        <li>Fără o cerere de ștergere, mesajele către dezvoltator se păstrează cel mult 2 ani.</li>
+        <li>Răspundem și ștergem în cel mult 30 de zile de la cerere.</li>
+      </ul>
+      <p>Detalii complete în <a href="privacy.html">politica de confidențialitate</a>.</p>
+    </section>
+  </article>
+
+  <hr>
+
+  <article id="en" lang="en">
+    <span class="lang-title">English</span>
+    <h2 style="font-size:26px">Deleting your OurPot data</h2>
+    <p class="meta">App: OurPot (on Google Play as “OurPot: Track Your Money”) · developer: Ghid Labs</p>
+
+    <section>
+      <h2>1. Data on your phone</h2>
+      <p>Transactions, categories, budgets, notes, settings and saved notifications stay only on your phone. To delete them:</p>
+      <ul>
+        <li>in the app: <em>More → Settings → Delete all data</em>, then confirm;</li>
+        <li>or uninstall the app, which removes everything stored on the phone.</li>
+      </ul>
+      <p>Backup files you saved and Android’s automatic backup in your Google account are managed by you and can be deleted at any time.</p>
+    </section>
+
+    <section>
+      <h2>2. Shared budget (on the server, encrypted)</h2>
+      <ul>
+        <li>In the <em>Shared</em> tab, open the shared budget settings and choose <em>Leave shared budget</em>. Your member profile (name, share, shared cards) is deleted from the server.</li>
+        <li>Shared payments you sent stay, encrypted, with the other members until they remove them or the whole shared budget is deleted.</li>
+        <li>To have the <strong>entire shared budget</strong> deleted from the server, e-mail <a href="mailto:coleaghidiu@gmail.com">coleaghidiu@gmail.com</a> with the invitation code.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Messages sent to the developer</h2>
+      <p>Reports sent from <em>Report a problem or suggest an idea</em> (text, your e-mail if you left it, technical details) are deleted on request. E-mail <a href="mailto:coleaghidiu@gmail.com">coleaghidiu@gmail.com</a> with the approximate date and part of the text so we can find them.</p>
+    </section>
+
+    <section>
+      <h2>What is deleted and what is kept</h2>
+      <ul>
+        <li>Deleted: the data requested above and the anonymous Firebase identifier linked to it.</li>
+        <li>We keep nothing after deletion, except where the law requires it.</li>
+        <li>Without a deletion request, messages to the developer are kept for up to 2 years.</li>
+        <li>We reply and delete within 30 days of your request.</li>
+      </ul>
+      <p>Full details in the <a href="privacy.html">privacy policy</a>.</p>
+    </section>
+  </article>
+  <p style="text-align:center;color:var(--muted);font-size:14px;margin:0">OurPot · Ghid Labs · <a href="privacy.html">Politica de confidențialitate / Privacy policy</a></p>
+</div>
+</body>
+</html>
